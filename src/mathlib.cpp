@@ -28,12 +28,6 @@ mathlib::ml_result ml_pow(int base, unsigned int exp) {
   return {result, mathlib::ml_error::ok};
 }
 
-static int fact_rec(int n) {
-  if (n <= 1)
-    return 1;
-  return n * fact_rec(n - 1);
-}
-
 mathlib::ml_result ml_fact(unsigned int n) {
   if (n <= 1) {
     return {1, mathlib::ml_error::ok};
