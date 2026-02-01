@@ -2,21 +2,39 @@
 #ifndef MATHLIB_H
 #define MATHLIB_H
 
-namespace mathlib {
-enum class ml_error { ok, div0 };
+#include <cstdint>
 
-struct ml_result {
-  int value;
-  ml_error error;
+namespace mathlib {
+
+enum class ml_error : std::uint8_t {
+    ok = 0,
+    div0,
+    overflow
 };
 
-ml_result ml_add(int a, int b);
-ml_result ml_sub(int a, int b);
-ml_result ml_mul(int a, int b);
+enum class ml_kind : std::uint8_t {
+    i64 = 0,
+    u64
+};
 
-ml_result ml_div(int a, int b);
-ml_result ml_pow(int base, unsigned int exp);
-ml_result ml_fact(unsigned int n);
+struct ml_result {
+    ml_kind kind;
+    ml_error error;
+    union {
+        std::int64_t i64;
+        std::uint64_t u64;
+    } value;
+};
+
+ml_result ml_add(std::int64_t a, std::int64_t b);
+ml_result ml_sub(std::int64_t a, std::int64_t b);
+ml_result ml_mul(std::int64_t a, std::int64_t b);
+
+ml_result ml_div(std::int64_t a, std::int64_t b);
+ml_result ml_pow(std::int64_t base, std::uint64_t exp);
+
+ml_result ml_fact(std::uint64_t n);
+
 } // namespace mathlib
 
 #endif
