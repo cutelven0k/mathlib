@@ -3,12 +3,12 @@
 
 namespace mathlib {
 
-inline ml_result make_i64(ml_error e, std::int64_t v) { return { ml_kind::i64, e, { .i64 = v } }; }
-inline ml_result make_u64(ml_error e, std::uint64_t v) { return { ml_kind::u64, e, { .u64 = v } }; }
+ml_result make_i64(ml_error e, std::int64_t v) { return { ml_kind::i64, e, { .i64 = v } }; }
+ml_result make_u64(ml_error e, std::uint64_t v) { return { ml_kind::u64, e, { .u64 = v } }; }
 
-inline ml_result ovf_i64() { return make_i64(ml_error::overflow, 0); }
-inline ml_result ovf_u64() { return make_u64(ml_error::overflow, 0); }
-inline ml_result div0_i64() { return make_i64(ml_error::div0, 0); }
+ml_result ovf_i64() { return make_i64(ml_error::overflow, 0); }
+ml_result ovf_u64() { return make_u64(ml_error::overflow, 0); }
+ml_result div0_i64() { return make_i64(ml_error::div0, 0); }
 
 ml_result ml_add(std::int64_t a, std::int64_t b)
 {
